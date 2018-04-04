@@ -17,9 +17,36 @@ Plug 'walm/jshint.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
-" Plug 'quark-zju/vim-cpp-auto-include' "Auto include hoses objc
-" Plug 'valloric/youcompleteme', { 'dir': '~/.vim/plugged/youcompleteme', 'do': './install.py --clang-completer --system-libclang --system-boost'}
+Plug 'sbdchd/neoformat'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'vim-syntastic/syntastic'
 call plug#end()
+
+" Javascript
+let g:javascript_plugin_jsdoc = 1
+let g:neoformat_try_formatprg = 1
+augroup NeoformatAutoFormat
+    autocmd!
+    autocmd FileType javascript setlocal formatprg=prettier\
+                                             \--stdin\
+                                             \--single-quote\
+                                             \--trailing-comma\ es5
+    autocmd BufWritePre *.js,*.jsx Neoformat
+augroup END
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+
 
 " Activate python highlighting
 let g:python_highlight_all = 1
@@ -29,10 +56,6 @@ autocmd BufNewFile,BufRead BUCK,BUCK_DEFS set syntax=python
 " Open nerdtree only when opening vim on a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-
-" Activate cpp auto include
-"autocmd BufWritePre /**.cpp :ruby CppAutoInclude::process
 
 
 let g:clang_format#style_options = {
@@ -53,9 +76,6 @@ let g:clang_format#style_options = {
 nnoremap <C-P> :! python %<CR>
 nmap <Leader>p :! python %<CR>
 
-" if you install vim-operator-user
-"autocmd FileType c,cpp,objc,hpp map <buffer><Leader>x <Plug>(operator-clang-format)
-
 " auto fold the top level
 autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
 
@@ -67,6 +87,7 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set paste
 
 " misc
 set number

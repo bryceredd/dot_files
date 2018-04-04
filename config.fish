@@ -4,7 +4,11 @@ set -gx EDITOR vim
 # z search!
 . ~/dot_files/z.fish
 
+# add aws cli to path
+set PATH $PATH ~/.local/bin
+
 alias n "vim ~/Dropbox/notes"
+alias node "nodejs"
 
 #
 # ADD GIT BRANCH
