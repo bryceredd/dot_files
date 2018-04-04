@@ -1,5 +1,8 @@
 let g:fzf_install = 'yes | ./install'
 
+" Activate markdown for .txt
+let g:vim_markdown_auto_extension_ext = 'txt'
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree'
@@ -11,14 +14,16 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-python/python-syntax'
 Plug 'jelera/vim-javascript-syntax'
 Plug 'walm/jshint.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'elzr/vim-json'
 " Plug 'quark-zju/vim-cpp-auto-include' "Auto include hoses objc
 " Plug 'valloric/youcompleteme', { 'dir': '~/.vim/plugged/youcompleteme', 'do': './install.py --clang-completer --system-libclang --system-boost'}
 call plug#end()
 
-
 " Activate python highlighting
-"let g:python_highlight_all = 1
-"autocmd BufNewFile,BufRead BUCK,BUCK_DEFS set syntax=python
+let g:python_highlight_all = 1
+autocmd BufNewFile,BufRead BUCK,BUCK_DEFS set syntax=python
 
 
 " Open nerdtree only when opening vim on a directory
@@ -45,6 +50,8 @@ nmap <Leader>C :ClangFormat<CR>
 let g:clang_format#style_options = {
 			\"UseTab": "Never"}
 
+nnoremap <C-P> :! python %<CR>
+nmap <Leader>p :! python %<CR>
 
 " if you install vim-operator-user
 "autocmd FileType c,cpp,objc,hpp map <buffer><Leader>x <Plug>(operator-clang-format)

@@ -2,7 +2,9 @@
 set -gx EDITOR vim
 
 # z search!
-. ~/.scripts/z.fish
+. ~/dot_files/z.fish
+
+alias n "vim ~/Dropbox/notes"
 
 #
 # ADD GIT BRANCH
