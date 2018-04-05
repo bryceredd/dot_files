@@ -22,7 +22,11 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'vim-syntastic/syntastic'
+Plug 'joonty/vim-do'
 call plug#end()
+
+" Do
+nmap <Leader>r :DoAgain<CR>
 
 " Javascript
 let g:javascript_plugin_jsdoc = 1
@@ -84,9 +88,9 @@ set foldnestmax=2
 
 " tabs
 set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set paste
 
 " misc
