@@ -33,11 +33,18 @@ let g:javascript_plugin_jsdoc = 1
 let g:neoformat_try_formatprg = 1
 augroup NeoformatAutoFormat
     autocmd!
-    autocmd FileType javascript setlocal formatprg=prettier\
+    autocmd FileType javascript,javascript.jsx setlocal formatprg=prettier\
                                              \--stdin\
                                              \--single-quote\
                                              \--trailing-comma\ es5
-    autocmd BufWritePre *.js,*.jsx Neoformat
+    autocmd BufWritePre *.js,*.jsx Neoformat prettier
+augroup END
+
+augroup NeoformatAutoFormatHtml
+    autocmd!
+    autocmd FileType html setlocal formatprg=js-beautify\
+                                             \--stdin\
+    autocmd BufWritePre *.html,*.css Neoformat
 augroup END
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -56,6 +63,24 @@ set statusline+=%*
 let g:python_highlight_all = 1
 autocmd BufNewFile,BufRead BUCK,BUCK_DEFS set syntax=python
 
+
+" NerdTREE find file
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call SyncTree()
 
 " Open nerdtree only when opening vim on a directory
 autocmd StdinReadPre * let s:std_in=1
@@ -79,6 +104,9 @@ let g:clang_format#style_options = {
 
 nnoremap <C-P> :! python %<CR>
 nmap <Leader>p :! python %<CR>
+
+noremap <C-l> :Files<CR>
+nnoremap <C-l> :Files<CR>
 
 " auto fold the top level
 autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
