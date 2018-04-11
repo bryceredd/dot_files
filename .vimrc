@@ -31,20 +31,13 @@ nmap <Leader>r :DoAgain<CR>
 " Javascript
 let g:javascript_plugin_jsdoc = 1
 let g:neoformat_try_formatprg = 1
-augroup NeoformatAutoFormat
-    autocmd!
-    autocmd FileType javascript,javascript.jsx setlocal formatprg=prettier\
-                                             \--stdin\
-                                             \--single-quote\
-                                             \--trailing-comma\ es5
-    autocmd BufWritePre *.js,*.jsx Neoformat prettier
-augroup END
 
-augroup NeoformatAutoFormatHtml
-    autocmd!
-    autocmd FileType html setlocal formatprg=js-beautify\
-                                             \--stdin\
-    autocmd BufWritePre *.html,*.css Neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre *.js undojoin | Neoformat prettier
+  autocmd BufWritePre *.json undojoin | Neoformat 
+  autocmd BufWritePre *.html undojoin | Neoformat htmlbeautify
+  autocmd BufWritePre *.css,*.scss undojoin | Neoformat prettier
 augroup END
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -102,11 +95,8 @@ nmap <Leader>C :ClangFormat<CR>
 let g:clang_format#style_options = {
 			\"UseTab": "Never"}
 
-nnoremap <C-P> :! python %<CR>
-nmap <Leader>p :! python %<CR>
-
-noremap <C-l> :Files<CR>
-nnoremap <C-l> :Files<CR>
+noremap <C-p> :Files<CR>
+nnoremap <C-p> :Files<CR>
 
 " auto fold the top level
 autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
