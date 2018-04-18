@@ -13,6 +13,15 @@ if test -d ~/Library/Python/2.7/bin
 	set PATH $PATH ~/Library/Python/2.7/bin # osx
 end
 
+# add linux brew to path
+if test -d ~/.local/bin
+  set PATH $PATH /home/linuxbrew/.linuxbrew/bin
+end
+
+# fzf to use ripgrep
+set FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+
 alias n "vim ~/Dropbox/notes"
 
 #

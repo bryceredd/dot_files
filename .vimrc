@@ -34,10 +34,9 @@ let g:neoformat_try_formatprg = 1
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.js undojoin | Neoformat prettier
+  autocmd BufWritePre *.js,*.css,*.scss undojoin | Neoformat prettier
   autocmd BufWritePre *.json undojoin | Neoformat 
   autocmd BufWritePre *.html undojoin | Neoformat htmlbeautify
-  autocmd BufWritePre *.css,*.scss undojoin | Neoformat prettier
 augroup END
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -49,7 +48,6 @@ let g:syntastic_check_on_wq = 0
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 
 
 " Activate python highlighting
@@ -95,8 +93,18 @@ nmap <Leader>C :ClangFormat<CR>
 let g:clang_format#style_options = {
 			\"UseTab": "Never"}
 
-noremap <C-p> :Files<CR>
-nnoremap <C-p> :Files<CR>
+" fuzzy word search
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '.shellescape(<q-args>), 1, <bang>0)
+noremap <C-o> :Files<CR>
+nnoremap <C-o> :Files<CR>
+noremap <C-p> :Find<CR>
+nnoremap <C-p> :Find<CR>
+let g:fzf_layout = { 'down': '~20%' }
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
 
 " auto fold the top level
 autocmd BufWinEnter * let &foldlevel = max(map(range(1, line('$')), 'foldlevel(v:val)'))
