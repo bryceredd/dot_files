@@ -22,7 +22,7 @@ end
 set FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 
-alias n "vim ~/Dropbox/notes"
+alias notes "vim ~/Dropbox/notes"
 
 #
 # ADD GIT BRANCH
