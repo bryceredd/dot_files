@@ -8,22 +8,27 @@ Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'SolaWing/vim-objc-syntax'
-Plug 'rhysd/vim-clang-format'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-python/python-syntax'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'walm/jshint.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
-Plug 'elzr/vim-json'
 Plug 'sbdchd/neoformat'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'vim-syntastic/syntastic'
 Plug 'joonty/vim-do'
+Plug 'vim-scripts/marvim'
+
+" JS syntax highlight
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'elzr/vim-json'
+
+" Python
+Plug 'vim-python/python-syntax'
 call plug#end()
+
+" Obj-c++
+Plug 'SolaWing/vim-objc-syntax'
+Plug 'rhysd/vim-clang-format'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
 " Do
 nmap <Leader>r :DoAgain<CR>
@@ -76,7 +81,6 @@ autocmd BufEnter * call SyncTree()
 " Open nerdtree only when opening vim on a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
 
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,

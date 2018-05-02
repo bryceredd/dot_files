@@ -148,3 +148,10 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# Change keyboard repeat rate
+exec xset r rate 200 45
+
+# Set gaming monitor to 144 hz
+xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
+
