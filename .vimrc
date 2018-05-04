@@ -16,10 +16,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'joonty/vim-do'
 Plug 'vim-scripts/marvim'
 
-" JS syntax highlight
+" JS 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' }
 
 " Python
 Plug 'vim-python/python-syntax'
@@ -33,9 +34,21 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " Do
 nmap <Leader>r :DoAgain<CR>
 
+" Marvim - don't prefix macros
+let marvim_prefix = 0 
+let marvim_store_key = 'ms'
+let marvim_find_key = 'mf'
+
 " Javascript
 let g:javascript_plugin_jsdoc = 1
 let g:neoformat_try_formatprg = 1
+"let g:ycm_min_num_of_chars_for_completion = 2
+"let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_enable_diagnostic_highlighting = 1
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
+noremap <C-i> :TernDef<CR>
+nnoremap <C-i> :TernDef<CR>
 
 augroup fmt
   autocmd!
@@ -53,6 +66,7 @@ let g:syntastic_check_on_wq = 0
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
 
 
 " Activate python highlighting
@@ -98,6 +112,7 @@ let g:clang_format#style_options = {
 			\"UseTab": "Never"}
 
 " fuzzy word search
+let $FZF_DEFAULT_COMMAND = 'rg --files -g ""'
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" '.shellescape(<q-args>), 1, <bang>0)
 noremap <C-o> :Files<CR>
 nnoremap <C-o> :Files<CR>

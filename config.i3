@@ -146,12 +146,49 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+	position top
+	status_command i3status
+	tray_output LVDS
+	colors {
+		background #232323
+		statusline #DCDCDC
+	}
 }
+
+# Change colors
+client.focused          #3F8AC2 #096BAA #00BAA7 #00DA8E
+client.focused_inactive #333333 #5F676A #ffffff #484e50
+client.unfocused        #333333 #424242 #888888 #292d2e 
+client.urgent           #C10004 #900000 #ffffff #900000
+
+# And the font
+font pango: Ubuntu Mono 10
+
+
+# border / titlebar
+new_window normal
+hide_edge_borders vertical
+bindsym Control+Shift+x [class="^.*"] border toggle
+for_window [class="^.*"] border pixel 1
+for_window [class="URxvt"] border normal
+for_window [class="Leafpad"] border normal
+for_window [class="Lxappearance"] border normal
+for_window [class="Vlc"] border pixel 0
+for_window [class="mpv"] border pixel 0
+for_window [class="Pcmanfm"] border pixel 0
+for_window [class="Firefox"] border pixel 0
+for_window [class="Geary"] border pixel 0
+for_window [class="Lmms"] border pixel 0
+for_window [class="Feh"] border pixel 0
 
 # Change keyboard repeat rate
 exec xset r rate 200 45
 
 # Set gaming monitor to 144 hz
-xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
+exec xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
 
+# Network manager
+exec --no-startup-id nm-applet
+
+# Background
+exec --no-startup-id variety
