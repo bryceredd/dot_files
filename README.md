@@ -3,6 +3,7 @@
 Run this: 
 # linux
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"`
+`sudo apt-get install clang-format-5.0`
 
 # osx 
 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`

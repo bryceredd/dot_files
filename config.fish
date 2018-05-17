@@ -13,6 +13,10 @@ if test -d ~/Library/Python/2.7/bin
 	set PATH $PATH ~/Library/Python/2.7/bin # osx
 end
 
+if test -d ~/bin
+set PATH $PATH ~/bin # bazel
+end
+
 # add linux brew to path
 if test -d ~/.local/bin
   set PATH $PATH /home/linuxbrew/.linuxbrew/bin

@@ -20,16 +20,16 @@ Plug 'vim-scripts/marvim'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' }
 
 " Python
 Plug 'vim-python/python-syntax'
-call plug#end()
 
 " Obj-c++
-Plug 'SolaWing/vim-objc-syntax'
-Plug 'rhysd/vim-clang-format'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer'}
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+call plug#end()
 
 " Do
 nmap <Leader>r :DoAgain<CR>
@@ -49,12 +49,18 @@ set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 noremap <C-i> :TernDef<CR>
 nnoremap <C-i> :TernDef<CR>
+let g:ycm_key_list_select_completion=[]
+let g:ycm_key_list_previous_completion=[]
+let g:ycm_confirm_extra_conf=0
+
 
 augroup fmt
   autocmd!
   autocmd BufWritePre *.js,*.css,*.scss undojoin | Neoformat prettier
   autocmd BufWritePre *.json undojoin | Neoformat 
   autocmd BufWritePre *.html undojoin | Neoformat htmlbeautify
+  autocmd BufWritePre *.cpp,*.cc undojoin | Neoformat clangformat
+  autocmd BufWritePre *.py undojoin | Neoformat
 augroup END
 
 let g:syntastic_javascript_checkers = ['eslint']
@@ -67,6 +73,13 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+
+" C++
+" path to directory where library can be found
+let g:clang_library_path='/usr/lib/llvm-6.0/lib'
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++17 -stdlib=libc++'
+let &path.="src/include,/usr/include/AL,"
 
 
 " Activate python highlighting
@@ -95,21 +108,6 @@ autocmd BufEnter * call SyncTree()
 " Open nerdtree only when opening vim on a directory
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "Standard" : "C++11"}
-
-" map to <Leader>cf in C++ code
-" Toggle auto formatting:
-autocmd FileType c,cpp,hpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,hpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,hpp  ClangFormatAutoEnable
-nmap <Leader>C :ClangFormat<CR>
-let g:clang_format#style_options = {
-			\"UseTab": "Never"}
 
 " fuzzy word search
 let $FZF_DEFAULT_COMMAND = 'rg --files -g ""'
