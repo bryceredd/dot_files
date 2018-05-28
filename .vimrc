@@ -15,6 +15,7 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'vim-syntastic/syntastic'
 Plug 'joonty/vim-do'
 Plug 'vim-scripts/marvim'
+Plug 'manasthakur/vim-commentor'
 
 " JS 
 Plug 'pangloss/vim-javascript'
@@ -22,7 +23,9 @@ Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
 
 " Python
-Plug 'vim-python/python-syntax'
+Plug 'sentientmachine/Pretty-Vim-Python'
+Plug 'nvie/vim-flake8'
+
 
 " Obj-c++
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer'}
@@ -30,6 +33,9 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 call plug#end()
+
+" Python
+let python_highlight_all=1
 
 " Do
 nmap <Leader>r :DoAgain<CR>
@@ -80,11 +86,6 @@ let g:clang_library_path='/usr/lib/llvm-6.0/lib'
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '-std=c++17 -stdlib=libc++'
 let &path.="src/include,/usr/include/AL,"
-
-
-" Activate python highlighting
-let g:python_highlight_all = 1
-autocmd BufNewFile,BufRead BUCK,BUCK_DEFS set syntax=python
 
 
 " NerdTREE find file
