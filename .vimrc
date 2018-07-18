@@ -17,10 +17,13 @@ Plug 'joonty/vim-do'
 Plug 'vim-scripts/marvim'
 Plug 'manasthakur/vim-commentor'
 
+
 " JS 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
+Plug 'jparise/vim-graphql'
+
 
 " Python
 Plug 'sentientmachine/Pretty-Vim-Python'
