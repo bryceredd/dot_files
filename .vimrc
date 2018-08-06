@@ -17,10 +17,13 @@ Plug 'joonty/vim-do'
 Plug 'vim-scripts/marvim'
 Plug 'manasthakur/vim-commentor'
 
+
 " JS 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
+Plug 'jparise/vim-graphql'
+Plug 'leafgarland/typescript-vim'
 
 " Python
 Plug 'sentientmachine/Pretty-Vim-Python'
@@ -58,14 +61,14 @@ nnoremap <C-i> :TernDef<CR>
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 let g:ycm_confirm_extra_conf=0
-
+let g:ycm_global_ycm_extra_conf = '~/dot_files/.ycm_extra_conf.py'
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.js,*.css,*.scss undojoin | Neoformat prettier
+  autocmd BufWritePre *.js,*.css,*.scss,*.ts undojoin | Neoformat prettier
   autocmd BufWritePre *.json undojoin | Neoformat 
   autocmd BufWritePre *.html undojoin | Neoformat htmlbeautify
-  autocmd BufWritePre *.cpp,*.cc undojoin | Neoformat clangformat
+"  autocmd BufWritePre *.cpp,*.cc undojoin | Neoformat clangformat
   autocmd BufWritePre *.py undojoin | Neoformat
 augroup END
 
