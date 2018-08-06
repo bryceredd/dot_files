@@ -28,7 +28,7 @@ Plug 'nvie/vim-flake8'
 
 
 " Obj-c++
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer'}
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer'}
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
