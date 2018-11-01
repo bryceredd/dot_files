@@ -9,6 +9,10 @@ if test -d ~/.local/bin
 	set PATH $PATH ~/.local/bin # ubuntu
 end
 
+if test -d /usr/local/Cellar/node/10.6.0/bin/
+	set PATH $PATH /usr/local/Cellar/node/10.6.0/bin/
+end
+
 if test -d ~/Library/Python/2.7/bin
 	set PATH $PATH ~/Library/Python/2.7/bin # osx
 end
