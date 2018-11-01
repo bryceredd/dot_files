@@ -1,3 +1,6 @@
+# fish to vim!
+fish_vi_key_bindings
+
 # For hg and git
 set -gx EDITOR vim
 
