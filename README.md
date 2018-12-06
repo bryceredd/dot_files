@@ -7,13 +7,13 @@ Run this:
 
 # osx 
 * ```/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"```
-* ```brew install fish```
-* ```brew install ripgrep```
 * ```echo /usr/local/bin/fish | sudo tee -a /etc/shells```
-* ```chsh -s /usr/local/bin/fish```
 
 # all
-* ```curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim```
+* ```brew install fish```
+* ```brew install ripgrep```
+* ```chsh -s /usr/local/bin/fish```
+* ```curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim```
 * ```cd ~; ln -s dot_files/config.fish .config/fish/config.fish```
 * ```cd ~; ln -s dot_files/.vimrc .vimrc```
 * ```cd ~; ln -s dot_files/marvim .marvim```
