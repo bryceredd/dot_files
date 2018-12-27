@@ -1,3 +1,6 @@
+# fish to vim!
+fish_vi_key_bindings
+
 # For hg and git
 set -gx EDITOR vim
 
@@ -7,6 +10,10 @@ set -gx EDITOR vim
 # add aws cli to path
 if test -d ~/.local/bin
 	set PATH $PATH ~/.local/bin # ubuntu
+end
+
+if test -d /usr/local/Cellar/node/10.6.0/bin/
+	set PATH $PATH /usr/local/Cellar/node/10.6.0/bin/
 end
 
 if test -d ~/Library/Python/2.7/bin
