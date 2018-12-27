@@ -24,6 +24,8 @@ Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
 Plug 'jparise/vim-graphql'
 Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+
 
 " Python
 Plug 'sentientmachine/Pretty-Vim-Python'
@@ -65,7 +67,7 @@ let g:ycm_global_ycm_extra_conf = '~/dot_files/.ycm_extra_conf.py'
 
 augroup fmt
   autocmd!
-  autocmd BufWritePre *.js,*.css,*.scss,*.ts undojoin | Neoformat prettier
+  autocmd BufWritePre *.js,*.css,*.scss,*.ts,*.tsx,*.graphql undojoin | Neoformat prettier
   autocmd BufWritePre *.json undojoin | Neoformat 
   autocmd BufWritePre *.html undojoin | Neoformat htmlbeautify
 "  autocmd BufWritePre *.cpp,*.cc undojoin | Neoformat clangformat
