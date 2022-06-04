@@ -10,6 +10,8 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod1
+#set $mod Mod4 # is win
+#set $mod Control # is ctrl
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -43,10 +45,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -142,6 +144,8 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+bindsym $mod+Shift+s exec flameshot gui
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -184,11 +188,15 @@ for_window [class="Feh"] border pixel 0
 # Change keyboard repeat rate
 exec xset r rate 200 45
 
-# Set gaming monitor to 144 hz
-exec xrandr --output DVI-D-0 --mode 1920x1080 --rate 144
-
 # Network manager
 exec --no-startup-id nm-applet
 
 # Background
 exec --no-startup-id variety
+exec --no-startup-id xrandr --output DP-2 --mode 3440x1440 --rate 144.00
+exec --no-startup-id feh --randomize --bg-scale ~/Pictures/backgrounds/*
+
+mode "Passthrough Mode - Press Alt+F12 to exit" {
+  bindsym $mod+F12 mode "default"
+}
+bindsym $mod+F12 mode "Passthrough Mode - Press Alt+F12 to exit"
